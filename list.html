@@ -2,7 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Список серий - KG Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KG Anime - Главная</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -12,27 +13,31 @@
         <span class="logo-text">KG Anime</span>
         <nav class="menu">
             <a href="index.html">Главная</a>
-            <a href="#">Поддержка</a>
             <a href="#">Связь</a>
+            <a href="#">Поддержка</a>
         </nav>
     </div>
 </header>
 
-<div class="list-container">
-    <a href="javascript:history.back()" class="back-link">← Вернуться к плееру</a>
-    <h1 style="font-size: 48px; text-transform: uppercase;">ЗВЁЗДНОЕ ДИТЯ</h1>
-
-    <div class="season-card">
-        <div class="season-header">
-            <div class="indicator"></div>
-            <span>3 Сезон</span>
-        </div>
-        <div class="episodes-grid">
-            <a href="player.html?id=oshi-no-ko&ep=0" class="ep-link">1 серия</a>
-            <a href="player.html?id=oshi-no-ko&ep=1" class="ep-link">2 серия</a>
-            <a href="player.html?id=oshi-no-ko&ep=2" class="ep-link">3 серия</a>
-        </div>
+<main class="hero">
+    <img src="логотип.png" alt="Logo" class="main-logo"> <div class="hero-text">
+        смотрите аниме в<br>
+        <span>anime.kg.com</span>
     </div>
-</div>
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Поиск аниме">
+    </div>
+</main>
+
+<section class="recommendations">
+    <h2 class="section-title">РЕКОМЕНДАЦИИ</h2>
+    <div class="anime-grid">
+        <div class="anime-card" onclick="window.location.href='list.html?id=oshi-no-ko'">
+            <img src="poster.jpg" alt="Звездное дитя"> <p>Звёздное дитя</p>
+        </div>
+        </div>
+</section>
+
 </body>
 </html>

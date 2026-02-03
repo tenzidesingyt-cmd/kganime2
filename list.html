@@ -1,57 +1,38 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Список серий - KG Anime</title>
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    body { background-color: #003d3d; margin: 0; font-family: sans-serif; color: white; }
-    .list-container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-    .back-link { color: #8fa379; text-decoration: none; font-size: 14px; margin-bottom: 20px; display: block; }
-    .anime-title { font-size: 48px; margin-bottom: 40px; text-transform: uppercase; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
-    
-    .season-card { background-color: #0b1e1e; border-radius: 8px; padding: 25px; margin-top: 20px; }
-    .season-header { display: flex; align-items: center; gap: 10px; font-size: 22px; margin-bottom: 25px; }
-    .indicator { width: 4px; height: 24px; background-color: #a5b98f; }
-    
-    .episodes-grid { display: flex; gap: 12px; flex-wrap: wrap; }
-    .ep-link { 
-      background-color: #a5b98f; color: #000; padding: 12px 25px; 
-      border-radius: 4px; text-decoration: none; font-weight: bold; 
-      transition: 0.3s; 
-    }
-    .ep-link:hover { background-color: white; transform: translateY(-2px); }
-  </style>
+    <meta charset="UTF-8">
+    <title>Список серий - KG Anime</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <header class="header">
-  <div class="top-nav">
-    <span class="logo-text">KG Anime</span>
-    <nav class="menu">
-      <a href="index.html">Главная</a>
-      <a href="#">Поддержка</a>
-      <a href="#">Связь</a>
-    </nav>
-  </div>
+    <div class="top-nav">
+        <span class="logo-text">KG Anime</span>
+        <nav class="menu">
+            <a href="index.html">Главная</a>
+            <a href="#">Поддержка</a>
+            <a href="#">Связь</a>
+        </nav>
+    </div>
 </header>
 
 <div class="list-container">
-  <a href="javascript:history.back()" class="back-link">← Вернуться к плееру</a>
-  <h1 class="anime-title">ЗВЁЗДНОЕ ДИТЯ</h1>
+    <a href="javascript:history.back()" class="back-link">← Вернуться к плееру</a>
+    <h1 style="font-size: 48px; text-transform: uppercase;">ЗВЁЗДНОЕ ДИТЯ</h1>
 
-  <div class="season-card">
-    <div class="season-header">
-      <div class="indicator"></div>
-      <span>3 Сезон</span>
+    <div class="season-card">
+        <div class="season-header">
+            <div class="indicator"></div>
+            <span>3 Сезон</span>
+        </div>
+        <div class="episodes-grid">
+            <a href="player.html?id=oshi-no-ko&ep=0" class="ep-link">1 серия</a>
+            <a href="player.html?id=oshi-no-ko&ep=1" class="ep-link">2 серия</a>
+            <a href="player.html?id=oshi-no-ko&ep=2" class="ep-link">3 серия</a>
+        </div>
     </div>
-    <div class="episodes-grid">
-      <a href="player.html?id=oshi-no-ko&ep=0" class="ep-link">1 серия</a>
-      <a href="player.html?id=oshi-no-ko&ep=1" class="ep-link">2 серия</a>
-      <a href="player.html?id=oshi-no-ko&ep=2" class="ep-link">3 серия</a>
-    </div>
-  </div>
 </div>
-
 </body>
 </html>

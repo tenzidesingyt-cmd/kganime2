@@ -2,67 +2,58 @@
     const video = document.getElementById('vPlayer');
     const source = document.getElementById('vSource');
     
-    // Единая база данных для всех аниме
+    // База данных аниме
     const animeData = {
         "oshi-no-ko": {
             title: "Звёздное дитя",
             episodes: [
                 { n: 1, googleId: "1Ke76sZoLU-mGn0yDY7EhqFHBHINANuNz" },
-                { n: 2, googleId: "ID_2_СЕРИИ" }
+                { n: 2, googleId: "ID_ВТОРОЙ_СЕРИИ" }
             ]
         },
         "hells-paradise": {
             title: "Адский рай",
             episodes: [
-                { n: 1, googleId: "ID_GOOGLE_DRIVE_ЗДЕСЬ" }
+                { n: 1, googleId: "ID_ИЗ_ССЫЛКИ_GOOGLE_DRIVE" }
             ]
         },
         "jujutsu": {
             title: "Магическая битва",
             episodes: [
-                { n: 1, googleId: "ID_GOOGLE_DRIVE_ЗДЕСЬ" }
-            ]
-        },
-        "aly-russian": {
-            title: "Аля иногда кокетничает по-русски",
-            episodes: [
-                { n: 1, googleId: "ID_GOOGLE_DRIVE_ЗДЕСЬ" }
+                { n: 1, googleId: "ID_ИЗ_ССЫЛКИ_GOOGLE_DRIVE" }
             ]
         }
     };
 
     const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
+    const id = params.get('id') || "oshi-no-ko"; // По умолчанию открываем это, если id нет
     const startEp = parseInt(params.get('ep')) || 0; 
     const anime = animeData[id];
 
     function loadEpisode(idx) {
-        if (!anime || !anime.episodes[idx]) {
-            document.getElementById('anime-title').innerText = "Серия не найдена";
-            return;
-        }
+        if (!anime || !anime.episodes[idx]) return;
         const ep = anime.episodes[idx];
         
-        // Ссылка для Google Drive
+        // Ссылка для Google Drive (убедись, что доступ открыт)
         source.src = `https://drive.google.com/uc?export=download&id=${ep.googleId}`;
         video.load();
-        
+
         document.getElementById('anime-title').innerText = `${anime.title} — ${ep.n} СЕРИЯ`;
 
-        // Управление кнопками Назад/Вперед
+        // Логика кнопок переключения
         const pBtn = document.getElementById('pBtn');
         const nBtn = document.getElementById('nBtn');
 
-        if (idx === 0) pBtn.style.display = 'none';
+        if (idx === 0) pBtn.style.visibility = 'hidden';
         else {
-            pBtn.style.display = 'inline-block';
+            pBtn.style.visibility = 'visible';
             document.getElementById('pText').innerText = `${anime.episodes[idx-1].n} серия`;
             pBtn.onclick = () => loadEpisode(idx - 1);
         }
 
-        if (idx === anime.episodes.length - 1) nBtn.style.display = 'none';
+        if (idx === anime.episodes.length - 1) nBtn.style.visibility = 'hidden';
         else {
-            nBtn.style.display = 'inline-block';
+            nBtn.style.visibility = 'visible';
             document.getElementById('nText').innerText = `${anime.episodes[idx+1].n} серия`;
             nBtn.onclick = () => loadEpisode(idx + 1);
         }
@@ -70,7 +61,5 @@
 
     if (anime) {
         loadEpisode(startEp);
-    } else {
-        document.getElementById('anime-title').innerText = "Аниме не найдено";
     }
 </script>

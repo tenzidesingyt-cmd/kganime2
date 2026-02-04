@@ -3,8 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KG Anime - Главная</title>
+    <title>Список серий - KG Anime</title>
     <link rel="stylesheet" href="CSS/style.css">
+    <style>
+        .episode-list-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .episode-item {
+            background: #1a1a1a;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid #005a5a;
+        }
+        .episode-item:hover {
+            background: #005a5a;
+            transform: scale(1.02);
+        }
+        .anime-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .poster-large {
+            width: 250px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+    </style>
 </head>
 <body>
 
@@ -17,35 +51,68 @@
     </nav>
 </header>
 
-<main class="hero">
-    <img src="image/gojo-logo.png" alt="Logo" class="main-logo"> 
-    <div class="hero-text">
-        смотрите аниме в<br>
-        <span>anime.kg.com</span>
+<main class="episode-list-container">
+    <div id="anime-details" class="anime-info">
+        <h1 id="list-title">Загрузка...</h1>
     </div>
 
-    <div class="search-container">
-        <input type="text" class="search-input" placeholder="Поиск аниме">
-    </div>
+    <div id="episodes-grid" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        </div>
 </main>
 
-<section class="recommendations">
-    <h2 class="section-title">РЕКОМЕНДАЦИИ</h2>
-    <div class="anime-grid">
-        <div class="anime-card" onclick="window.location.href='player.html?id=oshi-no-ko'">
-            <img src="image/oshi-no-ko.jpg" alt="Звездное дитя">
-            <p>Звёздное дитя</p>
-        </div>
-        <div class="anime-card" onclick="window.location.href='player.html?id=hells-paradise'">
-            <img src="image/hells-paradise.jpg" alt="Адский рай">
-            <p>Адский рай</p>
-        </div>
-        <div class="anime-card" onclick="window.location.href='image/jujutsu.jpg'">
-            <img src="image/jujutsu.jpg" alt="Магическая битва">
-            <p>Магическая битва</p>
-        </div>
-    </div>
-</section>
+<script>
+    // Общая база данных (должна совпадать с player.html)
+    const animeData = {
+        "oshi-no-ko": {
+            title: "Звёздное дитя",
+            poster: "image/oshi-no-ko.jpg",
+            episodes: [
+                { n: 1 }, { n: 2 }, { n: 3 }
+            ]
+        },
+        "hells-paradise": {
+            title: "Адский рай",
+            poster: "image/hells-paradise.jpg",
+            episodes: [
+                { n: 1 }, { n: 2 }
+            ]
+        },
+        "jujutsu": {
+            title: "Магическая битва",
+            poster: "image/jujutsu.jpg",
+            episodes: [
+                { n: 1 }
+            ]
+        }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const anime = animeData[id];
+
+    if (anime) {
+        // Отображаем название и постер
+        document.getElementById('anime-details').innerHTML = `
+            <img src="${anime.poster}" class="poster-large" alt="${anime.title}">
+            <h1 style="margin-top:20px;">${anime.title}</h1>
+            <p>Выберите серию для просмотра:</p>
+        `;
+
+        // Генерируем список серий
+        const grid = document.getElementById('episodes-grid');
+        anime.episodes.forEach((ep, index) => {
+            const epBtn = document.createElement('div');
+            epBtn.className = 'episode-item';
+            epBtn.innerText = `СЕРИЯ ${ep.n}`;
+            epBtn.onclick = () => {
+                window.location.href = `player.html?id=${id}&ep=${index}`;
+            };
+            grid.appendChild(epBtn);
+        });
+    } else {
+        document.getElementById('list-title').innerText = "Аниме не найдено";
+    }
+</script>
 
 </body>
 </html>

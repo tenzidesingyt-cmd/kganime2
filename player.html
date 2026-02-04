@@ -1,86 +1,68 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Просмотр - KG Anime</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-<header class="header">
-    <div class="top-nav">
-        <span class="logo-text">KG Anime</span>
-        <nav class="menu">
-            <a href="index.html">Главная</a>
-            <a href="#">Поддержка</a>
-            <a href="#">Связь</a>
-        </nav>
-    </div>
-</header>
-
-<main class="player-main">
-    <h1 id="anime-title" style="font-size: 32px; color: white; margin-bottom: 20px;">ЗАГРУЗКА...</h1>
-
-    <div class="video-wrapper">
-        <video id="vPlayer" controls playsinline>
-            <source id="vSource" src="" type="video/mp4">
-        </video>
-        <div class="tap-zone left-z" onclick="document.getElementById('vPlayer').currentTime -= 10"></div>
-        <div class="tap-zone right-z" onclick="document.getElementById('vPlayer').currentTime += 10"></div>
-    </div>
-
-    <div class="series-nav-bar">
-        <button id="pBtn" class="nav-btn btn-gray">← <span id="pText">серия</span></button>
-        <button id="goToList" class="nav-btn btn-gray">список всех серий</button>
-        <button id="nBtn" class="nav-btn btn-next"><span id="nText">серия</span> →</button>
-    </div>
-</main>
-
 <script>
     const video = document.getElementById('vPlayer');
     const source = document.getElementById('vSource');
     
+    // Единая база данных для всех аниме
     const animeData = {
         "oshi-no-ko": {
-            title: "Звёздное дитя 3 сезон",
+            title: "Звёздное дитя",
             episodes: [
                 { n: 1, googleId: "1Ke76sZoLU-mGn0yDY7EhqFHBHINANuNz" },
-                { n: 2, googleId: "ID_ОТ_2_СЕРИИ" },
-                { n: 3, googleId: "ID_ОТ_3_СЕРИИ" }
+                { n: 2, googleId: "ID_2_СЕРИИ" }
+            ]
+        },
+        "hells-paradise": {
+            title: "Адский рай",
+            episodes: [
+                { n: 1, googleId: "ID_GOOGLE_DRIVE_ЗДЕСЬ" }
+            ]
+        },
+        "jujutsu": {
+            title: "Магическая битва",
+            episodes: [
+                { n: 1, googleId: "ID_GOOGLE_DRIVE_ЗДЕСЬ" }
+            ]
+        },
+        "aly-russian": {
+            title: "Аля иногда кокетничает по-русски",
+            episodes: [
+                { n: 1, googleId: "ID_GOOGLE_DRIVE_ЗДЕСЬ" }
             ]
         }
     };
 
     const params = new URLSearchParams(window.location.search);
-    const id = params.get('id') || "oshi-no-ko";
+    const id = params.get('id');
     const startEp = parseInt(params.get('ep')) || 0; 
     const anime = animeData[id];
 
     function loadEpisode(idx) {
-        if (!anime || !anime.episodes[idx]) return;
+        if (!anime || !anime.episodes[idx]) {
+            document.getElementById('anime-title').innerText = "Серия не найдена";
+            return;
+        }
         const ep = anime.episodes[idx];
         
-        // Исправленная ссылка для прямого стриминга
-        source.src = `https://drive.google.com/uc?export=download&id=${ep.googleId}&confirm=t`;
+        // Ссылка для Google Drive
+        source.src = `https://drive.google.com/uc?export=download&id=${ep.googleId}`;
         video.load();
-        if(idx > 0 || params.has('ep')) video.play().catch(() => {});
-
+        
         document.getElementById('anime-title').innerText = `${anime.title} — ${ep.n} СЕРИЯ`;
 
-        // Логика кнопок
+        // Управление кнопками Назад/Вперед
         const pBtn = document.getElementById('pBtn');
         const nBtn = document.getElementById('nBtn');
 
-        if (idx === 0) pBtn.classList.add('hidden');
+        if (idx === 0) pBtn.style.display = 'none';
         else {
-            pBtn.classList.remove('hidden');
+            pBtn.style.display = 'inline-block';
             document.getElementById('pText').innerText = `${anime.episodes[idx-1].n} серия`;
             pBtn.onclick = () => loadEpisode(idx - 1);
         }
 
-        if (idx === anime.episodes.length - 1) nBtn.classList.add('hidden');
+        if (idx === anime.episodes.length - 1) nBtn.style.display = 'none';
         else {
-            nBtn.classList.remove('hidden');
+            nBtn.style.display = 'inline-block';
             document.getElementById('nText').innerText = `${anime.episodes[idx+1].n} серия`;
             nBtn.onclick = () => loadEpisode(idx + 1);
         }
@@ -88,8 +70,7 @@
 
     if (anime) {
         loadEpisode(startEp);
-        document.getElementById('goToList').onclick = () => { window.location.href = `list.html?id=${id}`; };
+    } else {
+        document.getElementById('anime-title').innerText = "Аниме не найдено";
     }
 </script>
-</body>
-</html>

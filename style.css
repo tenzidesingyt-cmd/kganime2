@@ -1,0 +1,106 @@
+body {
+    background-color: #003d3d;
+    color: white;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Шапка как на макете */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Центральный блок */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.main-logo {
+    width: 200px; /* Размер как на скрине */
+    margin-bottom: 20px;
+}
+
+.hero-text {
+    text-align: center;
+    font-style: italic;
+    font-size: 24px;
+    color: #e0e0e0;
+}
+
+.hero-text span {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    font-style: normal;
+}
+
+/* Поиск */
+.search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.search-input {
+    background-color: #1a1a1a;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    width: 80%;
+    max-width: 600px;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Рекомендации */
+.section-title {
+    text-align: center;
+    font-size: 40px;
+    letter-spacing: 2px;
+    border-bottom: 3px solid white;
+    width: fit-content;
+    margin: 50px auto 30px;
+    padding-bottom: 5px;
+}
+
+.anime-grid {
+    display: flex;
+    gap: 20px;
+    padding: 0 50px 50px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.anime-card {
+    min-width: 200px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.anime-card img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    transition: 0.3s;
+}
+
+.anime-card:hover img {
+    transform: translateY(-10px);
+}

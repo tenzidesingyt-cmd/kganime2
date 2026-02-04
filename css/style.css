@@ -1,92 +1,106 @@
-/* Базовые настройки */
 body {
     background-color: #003d3d;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
 }
 
-/* Шапка сайта */
+/* Шапка как на макете */
 .top-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
-    background-color: rgba(0, 0, 0, 0.2);
 }
-
-.logo-text { font-weight: bold; font-size: 24px; }
 
 .menu a {
     color: white;
     text-decoration: none;
-    margin-left: 25px;
+    margin-left: 20px;
     font-size: 14px;
-    transition: 0.3s;
+    opacity: 0.9;
 }
 
-.menu a:hover { color: #a5b98f; }
-
-/* Плеер */
-.player-main {
+/* Центральный блок */
+.hero {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px;
+    margin-top: 40px;
 }
 
-.video-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-    aspect-ratio: 16 / 9;
-    border: 2px solid white;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #000;
+.main-logo {
+    width: 200px; /* Размер как на скрине */
     margin-bottom: 20px;
 }
 
-video { width: 100%; height: 100%; display: block; }
+.hero-text {
+    text-align: center;
+    font-style: italic;
+    font-size: 24px;
+    color: #e0e0e0;
+}
 
-/* Кнопки под плеером */
-.series-nav-bar {
+.hero-text span {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    font-style: normal;
+}
+
+/* Поиск */
+.search-container {
+    width: 100%;
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
+    margin-top: 25px;
 }
 
-.nav-btn {
-    padding: 12px 20px;
+.search-input {
+    background-color: #1a1a1a;
     border: none;
-    border-radius: 4px;
-    font-weight: bold;
+    border-radius: 25px;
+    padding: 15px 30px;
+    width: 80%;
+    max-width: 600px;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Рекомендации */
+.section-title {
+    text-align: center;
+    font-size: 40px;
+    letter-spacing: 2px;
+    border-bottom: 3px solid white;
+    width: fit-content;
+    margin: 50px auto 30px;
+    padding-bottom: 5px;
+}
+
+.anime-grid {
+    display: flex;
+    gap: 20px;
+    padding: 0 50px 50px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.anime-card {
+    min-width: 200px;
+    text-align: center;
     cursor: pointer;
-    font-size: 14px;
-    color: #1a1a1a;
-    transition: 0.2s;
-    text-decoration: none;
 }
 
-.btn-gray { background-color: #e0e0e0; }
-.btn-next { background-color: #a5b98f; }
-.hidden { visibility: hidden; pointer-events: none; }
-
-/* Список серий (list.html) */
-.list-container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-.season-card { background-color: #0b1e1e; border-radius: 12px; padding: 25px; margin-top: 20px; }
-.season-header { display: flex; align-items: center; gap: 12px; margin-bottom: 25px; }
-.indicator { width: 4px; height: 24px; background-color: #a5b98f; border-radius: 2px; }
-.episodes-grid { display: flex; gap: 12px; flex-wrap: wrap; }
-.ep-link { 
-    background-color: #a5b98f; color: #1a1a1a; padding: 12px 25px; 
-    border-radius: 6px; text-decoration: none; font-weight: bold; 
+.anime-card img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    transition: 0.3s;
 }
-.back-link { color: #8fa379; text-decoration: none; margin-bottom: 20px; display: inline-block; }
 
-/* Зоны перемотки */
-.tap-zone { position: absolute; top: 0; width: 25%; height: 90%; z-index: 5; }
-.left-z { left: 0; } .right-z { right: 0; }
+.anime-card:hover img {
+    transform: translateY(-10px);
+}
